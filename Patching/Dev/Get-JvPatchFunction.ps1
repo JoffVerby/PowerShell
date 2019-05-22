@@ -2,10 +2,10 @@
 function get-JVPatchList {
     [CmdletBinding()]
     param (
-        [string] $TextFilePath
+        [string] $Path
         
     )
-    $Servers = Get-Content -Path $TextFilePath
+    $Servers = Get-Content -Path $Path
 
 #Action on each server
 foreach ($server in $Servers) {
