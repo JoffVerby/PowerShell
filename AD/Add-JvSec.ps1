@@ -26,7 +26,7 @@ function Add-JvSecurityGroup {
     $ALL = Get-Acl -Path $Path
     
     #selects the group name, the level of access and only returns Domain accounts and removes Domain Admin Group 
-    #Will only display groups with the naming of "FS-"
+    #Will only display groups with the naming security group naming conventions
     $Groups = $all.Access | Select-Object IdentityReference,FileSystemRights | Where-Object {(($_.IdentityReference.value) -match ('^<domainName>\\') -and ($_.IdentityReference.value -notlike '<DomainName>\Domain Admins') -and ($_.IdentityReference.value -match ('^<SecGroupNamingConvention>')))  }  
 
     #Build the Menu
