@@ -14,7 +14,7 @@ function Add-JvSecurityGroup {
             }
          })]
          #Validates that the path begins with "\\crwin.crnet.org\dfs"
-        [ValidatePattern('^\\\\crwin.crnet.org\\dfs')]
+        [ValidatePattern('^\\\\<NetworkShareLocation>')]
         [string]$Path
     )
     
@@ -27,7 +27,7 @@ function Add-JvSecurityGroup {
     
     #selects the group name, the level of access and only returns Domain accounts and removes Domain Admin Group 
     #Will only display groups with the naming of "FS-"
-    $Groups = $all.Access | Select-Object IdentityReference,FileSystemRights | Where-Object {(($_.IdentityReference.value) -match ('^CRWIN\\') -and ($_.IdentityReference.value -notlike 'CRWIN\Domain Admins') -and ($_.IdentityReference.value -match ('^CRWIN\\FS-')))  }  
+    $Groups = $all.Access | Select-Object IdentityReference,FileSystemRights | Where-Object {(($_.IdentityReference.value) -match ('^<domainName>\\') -and ($_.IdentityReference.value -notlike '<DomainName>\Domain Admins') -and ($_.IdentityReference.value -match ('^<SecGroupNamingConvention>')))  }  
 
     #Build the Menu
     #exit number used for exit option in menu
