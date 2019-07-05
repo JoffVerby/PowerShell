@@ -13,7 +13,7 @@ function Add-JvSecurityGroup {
                 $true    
             }
          })]
-         #Validates that the path begins with "\\crwin.crnet.org\dfs"
+         #Validates that the path begins with "<ShareNameConvention>"
         [ValidatePattern('^\\\\<NetworkShareLocation>')]
         [string]$Path
     )
