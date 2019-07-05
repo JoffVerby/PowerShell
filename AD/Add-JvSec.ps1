@@ -31,7 +31,7 @@ function Add-JvSecurityGroup {
 
     #Build the Menu
     #exit number used for exit option in menu
-    $exitnumber = [int]$Groups.Count
+    $exitnumber = $Groups | Measure-Object | Select-Object Count
     $i=0
     $menuoptions = @()
     foreach ($thing in $groups) {$i++ 
