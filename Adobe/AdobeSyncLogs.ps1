@@ -112,7 +112,7 @@ foreach ($logfile in $File) {
     } until ($NewFile -eq "True")
 
 }
-    #log file clean up
+    #Log file clean up
     $limit = (Get-Date).AddDays(-60)
     Get-ChildItem -Path $Path | Where-Object { $_.CreationTime -lt $limit } | Remove-Item -Force     
 
