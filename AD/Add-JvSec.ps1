@@ -1,5 +1,33 @@
-#This function finds the Security groups of a specified directory and allows the user of the function to add users to it
 function Add-JvSecurityGroup {
+        <#
+.SYNOPSIS
+Adds an AD user to an AD Group which as access to the specified path
+
+.DESCRIPTION
+Retrieves the AD groups which have permission to the UNC path specified, a menu is built
+numbering the groups as options, the user can then choose the group and add the user by
+samaccount name to the desired group.
+
+.PARAMETER Path
+The UNC path to the folder in the file share
+
+.EXAMPLE
+Add-JvSecurityGroup -Path "\\joffnet.org\dfs\Fincance\Reports\"
+\\joffnet.org\dfs\Fincance\Reports\ has been set as the path 
+ 
+Getting Security Groups
+
+Please choose which group to add Users to
+
+Option Group                          AccessRights
+------ -----                          ------------
+     1 JoffNet\FS-IS-Finance-All 	Modify, Synchronize
+     2 JoffNet\FS-IS-Finance-Reports    Modify, Synchronize
+     3 Exit
+
+
+Group Number:
+#>
     [CmdletBinding()]
     param (
         [parameter(Mandatory)]
