@@ -8,6 +8,6 @@ The Tool outputs the .log file to a windows file share.  It looks like this:
 
 ![alt text](https://github.com/JoffVerby/PowerShell/blob/master/Media/publicAdobe.jpg)
 
-The Script ingests the log file, strips out anything useless, and uses a lot of regex to extract the useful bits before uploading to a sharepoint list, making it look like this:
+The Script ingests the log file, strips out anything useless, and uses a lot of regex to extract the useful bits before uploading to a sharepoint   list, making it look like this:
 
 ![alt text](https://github.com/JoffVerby/PowerShell/blob/master/Media/adobesharepoint-public.jpg)
