@@ -17,3 +17,5 @@ which builds a menu in the cli.  The user of the function then simply references
 The Function checks if the Path, User, and UNC Path exists with error handling.
 
 *PS - I realise that ``Write-Host`` with colours is frowned upon. I may take it out at some point in the future but, if you are reading this it means I'm still okay with it therefore you'll have to be too!*
+
+![alt text](https://github.com/JoffVerby/PowerShell/blob/master/Media/add-jvsec.jpg)
