@@ -12,8 +12,8 @@ With this function it's a simple one-liner (example below, function also contain
 
 ``Add-JvSecurityGroup -Path <UNC PAth>``
 
-which builds a menu in the cli.  The user of the function then simply references the numbers in the Menu to choose the groups and uses the SamAccountName of the user to add to the group.
+which builds a menu in the cli.  The user of the function then simply references the numbers in the menu to choose the groups and uses the SamAccountName of the user to add to the group.
 
-The Function checks if the Path, User, and file share exists with error handling.
+The Function checks if the Path, User, and UNC Path exists with error handling.
 
-*PS - I realise that ``Write-Host`` with colours is frowned upon, I may take it out at some point in the future but if you are reasing this it means I'm still okay with it!*
+*PS - I realise that ``Write-Host`` with colours is frowned upon. I may take it out at some point in the future but, if you are reading this it means I'm still okay with it therefore you'll have to be too!*
