@@ -19,5 +19,5 @@ Please do:
 
 Please don't:
 
-* Make fun of the newb (me)
+* Say anything mean
 * Critisize without construction
