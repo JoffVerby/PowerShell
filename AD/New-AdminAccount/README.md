@@ -1,4 +1,4 @@
-# New-CRUKAdminAccount
+# New-AdminAccount
 
 ## Powershell function for automating the creation of a new network admin account
 
