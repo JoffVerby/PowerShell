@@ -4,7 +4,7 @@
 
 Use example:
 
-New-CRUKAdminAccount -User test01 -OU ServiceDesk
+New-AdminAccount -User test01 -OU ServiceDesk
 
 This function references a users current non-admin account and creates an admin account using data from the current account.  The OU selected will put the new account in the relevant OU within the "Administrators" OU
 
