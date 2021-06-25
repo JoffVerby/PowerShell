@@ -1,4 +1,4 @@
-function Add-CommVaultToSharePoint {
+function Add-DataToSharePoint {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # Parameter help description
