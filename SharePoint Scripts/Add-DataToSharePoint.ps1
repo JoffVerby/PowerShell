@@ -1,11 +1,10 @@
 function Add-DataToSharePoint {
     [CmdletBinding(SupportsShouldProcess)]
     param (
-        # Parameter help description
         [Parameter(ValueFromPipeline, Mandatory)]
         [Object]$Server,
         [Parameter(ValueFromPipeline)]
-        [string]$list = 'CommVault Audit',
+        [string]$list = <Default List>,
         [Parameter(ValueFromPipeline)]
         [string]$url
     )
@@ -51,11 +50,33 @@ function Add-DataToSharePoint {
             Write-Error "Cannot connect to site $($url)"
             break
         }
-        $list = $list
-        #End Region
+        if (-not($list)) {
+            $list = Read-Host "Please Enter the name of the SharePointList"
+        }
+        #Chceck if list exists in site
+        if ($list -notin $(Get-PnPList).title) {
+            Write-Error "$($list) does not exist in SharePoint Site $($URL)"
+            break
+        }
+        #EndRegion
+        #Region Logging path
+        $logPath = 'C:\temp\SPUpload.log'
+        $CheckLogPath = Test-Path $logPath
+        if (-not($CheckLogPath)) {
+            try {
+                New-Item -Path $logPath -Force -ErrorAction Stop | Out-Null
+                Write-Verbose "Created Log path at $($logPath)"
+                $logging = $true
+            }
+            catch {
+                Write-Warning "A log file for this job could not be created"
+                $logging = $false
+            }
+        }
+        #EndRegion
     }
     process {
-        #What if Syntax
+        #What if handling
         if ($PSCmdlet.ShouldProcess(($Server.Hostname), "Adding to $($list)")) {
             try {
                 #Handle the Yes / No Values
@@ -95,10 +116,15 @@ function Add-DataToSharePoint {
                     "Veeam"                  = $Server.Veeam
       
                 } -ErrorAction Stop
+               if ($logging) {
+                    Write-Output "Succecfully added $($server.hostname) to $($list)" | Out-File $logPath -Append
+                }
             }
             catch {
-                Write-Warning "there was a problem adding $($server.hostname), see logs for details"
-                Write-Output "Problem adding $($server.hostname), see below error"  $Error[0].exception.message | Out-File C:\temp\spUpLoadError.log -Force -Append
+                Write-Warning "there was a problem adding $($server.hostname)"
+                if ($logging) {
+                    Write-Output "Problem adding $($server.hostname), see below error"  $Error[0].exception.message | Out-File $logPath -Force -Append
+                }
             }
         }
     
