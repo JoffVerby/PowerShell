@@ -55,7 +55,7 @@ Group Number:
     
     #selects the group name, the level of access and only returns Domain accounts and removes Domain Admin Group 
     #Will only display groups with the naming security group naming conventions
-    $Groups = $all.Access | Select-Object IdentityReference,FileSystemRights | Where-Object {(($_.IdentityReference.value) -match ('^<domainName>\\') -and ($_.IdentityReference.value -notlike '<DomainName>\Domain Admins') -and ($_.IdentityReference.value -match ('^<SecGroupNamingConvention>')))  }  
+    $Groups = $all.Access | Select-Object IdentityReference,FileSystemRights | Where-Object {(($_.IdentityReference.value) -match ('^joffnet.org\\') -and ($_.IdentityReference.value -notlike 'joffnet.org\Domain Admins') -and ($_.IdentityReference.value -match ('^FS-')))  }  
 
     #Build the Menu
     #exit number used for exit option in menu
