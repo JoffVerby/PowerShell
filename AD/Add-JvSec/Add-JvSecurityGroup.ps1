@@ -60,7 +60,7 @@ Group Number:
 
         #selects the group name, the level of access and only returns Domain accounts and removes Domain Admin Group 
         #Will only display groups with the naming security group naming conventions
-        $Groups = $all.Access | Select-Object IdentityReference, FileSystemRights | Where-Object { (($_.IdentityReference.value) -match ("^$domainName") -and ($_.IdentityReference.value -notlike "*Domain Admins*") -and ($_.IdentityReference.value -match ("^$domainName\\LDN"))) }  
+        $Groups = $all.Access | Select-Object IdentityReference, FileSystemRights | Where-Object { (($_.IdentityReference.value) -match ("^$domainName") -and ($_.IdentityReference.value -notlike "*Domain Admins*") -and ($_.IdentityReference.value -match("^$domainName\\\'"))) }   #enter yor seurity group naming convention
 
         #Build the Menu
         #exit number used for exit option in menu
@@ -84,7 +84,7 @@ Group Number:
             }
         }
         #ask which users to add
-        Write-Host "Please choose which group to add Users to" -ForegroundColor Green
+        Write-Host "Please choose group to add users" -ForegroundColor Green
         $menuoptions | Format-Table Option, Group, AccessRights -AutoSize
         #Ask user to select which group number
         $selectgroup = Read-Host "Group Number"
@@ -105,7 +105,7 @@ Group Number:
             Write-Host "Adding $users to $selectedgroup"
             #takes the samaccount names entered and splits them into seperate objects
             $UserMethod = $users.Split(',')
-            #error handling variable if user is alread in group
+            #error handling variable if user is already in group
             $UserExist = Get-ADGroupMember $selectedgroup
             foreach ($person in $UserMethod) {
                 $successname = Get-ADUser $person | Select-Object Name
